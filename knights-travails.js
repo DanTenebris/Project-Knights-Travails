@@ -81,22 +81,8 @@ const findPathToTarget = (target, node = root) => {
 
   for (let i = 0; i < nodeKey.length; i++) {
     const nodeMov = node[nodeKey[i]];
-
-    if (
-      (node.data[0] - 1 <= nodeMov.data[0] && node.data[0] <= target[0]) ||
-      (node.data[0] + 1 >= nodeMov.data[0] && node.data[0] >= target[0])
-    ) {
-      if (node.data[1] - 1 <= nodeMov.data[1] && node.data[1] <= target[1]) {
-        const nResult = findPathToTarget(target, nodeMov);
-        if (nResult !== null) return [node.data].concat(nResult);
-      } else if (
-        node.data[1] + 1 >= nodeMov.data[1] &&
-        node.data[1] >= target[1]
-      ) {
-        const nResult = findPathToTarget(target, nodeMov);
-        if (nResult !== null) return [node.data].concat(nResult);
-      }
-    }
+    const nResult = findPathToTarget(target, nodeMov);
+    if (nResult !== null) return [node.data].concat(nResult);
   }
 
   return null;
